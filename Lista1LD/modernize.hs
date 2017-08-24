@@ -24,7 +24,7 @@ modernize (x:xs) = unwords (split (words(x:xs) ))
 type Date = (Int, Int, Int)
 
 showDate :: Date -> String
-showDate (x,y,z) = formatDay x : formatMonth y : show z
+showDate (x,y,z) = formatDay x ++ formatMonth y ++ show z
 
 formatMonth :: Int -> String
 formatMonth m
@@ -40,11 +40,12 @@ formatMonth m
     | m == 10   = "October, "
     | m == 11   = "November, "
     | m == 12   = "December, "
+    | otherwise = "invalid month"
 
 formatDay :: Int -> String
 formatDay d
-    | d `elem` [1..10]  = show d + "th "
-    | d `elem` [11..21] = show d + "st "
+    | d `elem` [1..10]  = show d ++ "th "
+    | d `elem` [11..21] = show d ++ "st "
     | otherwise         = show d
 
 
